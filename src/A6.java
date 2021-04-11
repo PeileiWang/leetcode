@@ -46,7 +46,7 @@ public class A6 {
 
             /*
             按顺序往list对应的String里追加字符
-            加的过程实际是list头->尾遍历或者尾->头遍历的过程，用j记住list的下标。
+            加的过程实际是list的头->尾遍历，或者尾->头遍历的过程，用j记住list操作某个元素的下标。
             每当j到达头或者到达尾的时候，用reverse表示需要正序遍历或者逆序遍历。然后遍历时根据reverse判断需要j++还是j--。
              */
             boolean reverse = true;

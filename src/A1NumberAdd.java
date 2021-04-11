@@ -30,7 +30,17 @@ class Solution {
 //        return result;
 //    }
 
+    /**
+     * 两数之和为target，转变成一个数a 等于 target - 另一个数b
+     * 即 b = target-a
+     * 进一步转化为 遍历，判断target-a的结果是否在map的key中。不在则将a以及位置存放到map。
+     * @param nums
+     * @param target
+     * @return
+     */
     public int[] twoSum(int[] nums, int target) {
+
+        // map, key为nums[n]的值，value为n。
         Map<Integer, Integer> map = new HashMap<>();
         int[] result = new int[2];
 
