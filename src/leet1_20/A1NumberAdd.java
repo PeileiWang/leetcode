@@ -1,3 +1,5 @@
+package leet1_20;
+
 import java.util.HashMap;
 import java.util.Map;
 
