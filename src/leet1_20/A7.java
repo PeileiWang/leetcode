@@ -24,6 +24,7 @@ public class A7 {
                 int cur = x % 10;
                 x /= 10;
 
+                // 注意超出范围，在正数时不得大于int最大值 / 10。或者等于int最大值/10时，末尾数不得大于7
                 if (res > Integer.MAX_VALUE / 10 || (res == Integer.MAX_VALUE / 10 && cur > 7)) {
                     return 0;
                 } else if (res < Integer.MIN_VALUE / 10 || (res == Integer.MIN_VALUE / 10 && cur < -8)) {
