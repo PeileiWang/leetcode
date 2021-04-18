@@ -1,4 +1,4 @@
-package leet1_20;
+package leet.leet1_20;
 
 import java.util.ArrayList;
 import java.util.HashMap;
