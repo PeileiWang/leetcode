@@ -21,7 +21,7 @@ public class CoinChange {
      */
 
     public static void main(String[] args) {
-
+        coinChangeV3(new int[]{2}, 3);
     }
 
     /**
@@ -136,6 +136,35 @@ public class CoinChange {
         }
 
         return res[amount];
+    }
+
+    private static int coinChangeV4(int[] coins, int amount) {
+        int[] dp = new int[amount + 1]; // 从0到n
+
+        dp[0] = 0;
+
+        int curMin;
+        for (int i = 1; i < dp.length; i++) {
+            curMin = Integer.MAX_VALUE;
+            for (int coin : coins) {
+                if (i - coin < 0) {
+                    continue;
+                }
+
+                if (dp[i - coin] == Integer.MAX_VALUE) {
+                    continue;
+                }
+
+                curMin = Math.min(curMin, 1 + dp[i - coin]);
+            }
+            dp[i] = curMin;
+        }
+
+        if (dp[amount] == Integer.MAX_VALUE) {
+            return -1;
+        }
+
+        return dp[amount];
     }
 
 
