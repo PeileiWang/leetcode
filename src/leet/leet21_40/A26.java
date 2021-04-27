@@ -18,8 +18,7 @@ public class A26 {
                     continue;
                 }
 
-                nums[pos] = nums[i];
-                pos++;
+                nums[pos++] = nums[i];
             }
 
             return pos;
