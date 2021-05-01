@@ -11,6 +11,7 @@ public class TrieTree {
         trieTree.addWord("hello");
         trieTree.addWord("hi");
         trieTree.addWord("hell");
+        trieTree.addWord("helll");
 
         boolean hi = trieTree.hasWord("hi");
 
@@ -26,7 +27,7 @@ public class TrieTree {
 
         boolean hel = trieTree.deleteWord("hel");
 
-        boolean hell = trieTree.deleteWord("hell");
+        boolean hell = trieTree.deleteWord("helll");
 
         List<String> list1 = trieTree.allList();
         System.out.println(1);
@@ -157,7 +158,7 @@ public class TrieTree {
             }
 
             if (i == chars.length - 1) {
-                if (!curNode.end) { // 不是结尾字符
+                if (!curNode.end) { // 不是结尾字符，表示当前字符串不存在
                     return false;
                 }
 
@@ -166,10 +167,15 @@ public class TrieTree {
                     return true;
                 }
 
+                // 需要将当前字符以及之前不是结尾字符的字符都清掉。
                 TrieNode preNode = curNode.getPreNode();
                 while (preNode != null && !preNode.end) {
                     preNode.removeChild(curNode);
+                    curNode = preNode;
                     preNode = preNode.preNode;
+                }
+                if (preNode != null) {
+                    preNode.removeChild(curNode);
                 }
                 return true;
             }
