@@ -17,9 +17,14 @@ public class A28 {
             char[] charArray = haystack.toCharArray();
             char[] needleArray = needle.toCharArray();
 
+            // 思想：长度为needleArray.length的子串顺序匹配一次
             for (int i = 0; i < charArray.length; i++) {
                 for (int j = 0; j < needleArray.length; j++) {
-                    if (i + j >= charArray.length || charArray[i + j] != needleArray[j]) {
+                    if (i + j > charArray.length - 1) {
+                        return -1;
+                    }
+
+                    if (charArray[i + j] != needleArray[j]) {
                         break;
                     }
 
@@ -28,7 +33,6 @@ public class A28 {
                     }
                 }
             }
-
             return -1;
         }
     }

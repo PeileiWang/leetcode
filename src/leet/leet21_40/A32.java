@@ -27,13 +27,14 @@ public class A32 {
 
             Stack<Integer> stack = new Stack<>();
 
+            // 使用栈遍历一边，将符合条件的位置置为false,不符合的置为true
             for (int i = 0; i < chars.length; i++) {
-                if ('(' == chars[i]) {
+                if ('(' == chars[i]) { // 如果是左括号，将下标入栈
                     stack.push(i);
                 } else { // ')' == chars[i]
-                    if (stack.isEmpty()) {
+                    if (stack.isEmpty()) { // 如果为空，表示非法的右括号
                         booleans[i] = true;
-                    } else {
+                    } else { // 不为空，匹配一个左括号，将一个出栈
                         stack.pop();
                     }
                 }

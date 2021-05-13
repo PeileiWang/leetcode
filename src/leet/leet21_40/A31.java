@@ -22,6 +22,8 @@ public class A31 {
          */
         public void nextPermutation(int[] nums) {
             int left = nums.length - 2;
+
+            // 找到尽可能靠右的较小数
             for (; left >= 0; left--) {
                 if (nums[left] < nums[left + 1]) {
                     break;
@@ -30,9 +32,10 @@ public class A31 {
 
             // 由于找到的数后面是降序排列，所以直接从右往左遍历，找到比找到的数大的，然后交换顺序
             if (left >= 0) {
+                // 找尽可能小的较大数
                 for (int right = nums.length - 1; right > left; right--) {
                     if (nums[right] > nums[left]) {
-                        swap(nums, left, right); // 交换之后仍然为降序序
+                        swap(nums, left, right); // 交换之后仍然为降序
                         break;
                     }
                 }
