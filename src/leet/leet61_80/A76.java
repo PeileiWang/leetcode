@@ -11,6 +11,7 @@ public class A76 {
     public static void main(String[] args) {
         Solution solution = new Solution();
         String s = solution.minWindow("ADOBECODEBANC", "ABC");
+        solution.minWindowTest("ADOBECODEBANC", "ABC");
         System.out.println(s);
     }
 
@@ -79,6 +80,62 @@ public class A76 {
 
                     if (tempMap.get(c1) < targetMap.get(c1)) {
                         count--;
+                    }
+                }
+            }
+
+            if (minLength == Integer.MAX_VALUE) {
+                return "";
+            }
+
+            return s.substring(start, start + minLength);
+        }
+
+        public String minWindowTest(String s, String t) {
+            Map<Character, Integer> windowMap = new HashMap<>();
+
+            Map<Character, Integer> tempMap = new HashMap<>();
+
+            // 1、初始化windowMap
+            for (char c : t.toCharArray()) {
+                windowMap.put(c, windowMap.getOrDefault(c, 0) + 1);
+            }
+
+            char[] chars = s.toCharArray();
+
+            int left = 0, right = 0;
+            int matchCount = 0;
+            int minLength = Integer.MAX_VALUE;
+            int start = 0;
+            while (right < chars.length) {
+                char temp = chars[right];
+                right++;
+
+                if (windowMap.containsKey(temp)) {
+                    tempMap.put(temp, tempMap.getOrDefault(temp, 0) + 1);
+                    if (tempMap.get(temp).equals(windowMap.get(temp))) {
+                        matchCount++;
+                    }
+                } else {
+                    continue;
+                }
+
+                while (matchCount == windowMap.size()) {
+
+                    int length = right - left; // 因为right++
+                    if (length < minLength) {
+                        minLength = length;
+                        start = left;
+                    }
+
+                    char leftValue = chars[left];
+                    left++;
+
+                    if (windowMap.containsKey(leftValue)) {
+                        tempMap.put(leftValue, tempMap.get(leftValue) - 1);
+                        if (tempMap.get(leftValue) < windowMap.get(leftValue)) {
+                            matchCount--;
+                        }
                     }
                 }
             }
