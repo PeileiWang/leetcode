@@ -56,5 +56,30 @@ public class A56 {
 
             return result.toArray(new int[result.size()][]);
         }
+
+
+        public int[][] merges(int[][] intervals) {
+            Arrays.sort(intervals, (o1, o2) -> o1[0] - o2[0]);
+
+            List<int[]> result = new ArrayList<>();
+
+            int left = 0;
+            while (left < intervals.length) {
+                int leftMin = intervals[left][0];
+                int rightMax = intervals[left][1];
+
+                int right = left + 1;
+                while (right < intervals.length && intervals[right][0] <= rightMax) {
+                    rightMax = Math.max(rightMax, intervals[right][1]);
+                    right++;
+                }
+
+                int[] temp = new int[]{leftMin, rightMax};
+                result.add(temp);
+                left = right;
+            }
+
+            return result.toArray(new int[result.size()][]);
+        }
     }
 }

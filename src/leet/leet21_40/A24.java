@@ -28,6 +28,18 @@ public class A24 {
 
             return preNode.next;
         }
+
+        public ListNode swapPairs2(ListNode head) {
+            if (head == null || head.next == null) {
+                return head;
+            }
+
+            ListNode newHead = head.next;
+
+            head.next = swapPairs2(newHead.next);
+            newHead.next = head;
+            return newHead;
+        }
     }
 
     private static class ListNode {

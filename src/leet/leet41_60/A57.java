@@ -36,6 +36,7 @@ public class A57 {
 
             List<int[]> resultList = new ArrayList<>();
 
+            // 如果最小值大于已存在区间的最大值，直接返回
             if (newInterval[0] > intervals[intervals.length - 1][1]) {
                 resultList.addAll(Arrays.asList(intervals));
                 resultList.add(newInterval);
@@ -95,45 +96,37 @@ public class A57 {
          */
         public int[][] insertV2(int[][] intervals, int[] newInterval) {
 
-            if (intervals.length == 0) {
-                int[][] results = new int[1][];
-                results[0] = newInterval;
-                return results;
-            }
-
             int left = newInterval[0];
             int right = newInterval[1];
 
             List<int[]> resultList = new ArrayList<>();
+            boolean addFlag = false;
+            for (int[] interval : intervals) {
 
-            boolean findFlag = false;
-            for (int i = 0; i < intervals.length; i++) {
-                if (findFlag) {
-                    resultList.add(intervals[i]);
+                if (addFlag) {
+                    resultList.add(interval);
                     continue;
                 }
 
-                int curLeft = intervals[i][0];
-                int curRight = intervals[i][1];
+                int curLeft = interval[0]; // 当前左值
+                int curRight = interval[1]; // 当前右值
 
-                if (curLeft > right) { // 如果当前的左大于新的右，添加进去，更新flag
+                // 当前左大于右
+                if (curLeft > right) {
                     resultList.add(new int[]{left, right});
-                    findFlag = true;
-                    i--;
-                } else if (curRight < left) { // 如果当前的右小于新的左，直接添加当前的
-                    resultList.add(intervals[i]);
-                } else { // 否则找到当前的和新的的并集。
-                    // 合并区间的操作
-                    left = Math.min(curLeft, left);
-                    right = Math.max(curRight, right);
+                    addFlag = true;
+                    resultList.add(interval);
+                } else if (curRight < left) { // 当前右小于左
+                    resultList.add(interval);
+                } else { // 区间合并
+                    left = Math.min(left, curLeft);
+                    right = Math.max(right, curRight);
                 }
             }
 
-            // 如果没放置
-            if (!findFlag) {
+            if (!addFlag) {
                 resultList.add(new int[]{left, right});
             }
-
             return resultList.toArray(new int[resultList.size()][]);
         }
     }

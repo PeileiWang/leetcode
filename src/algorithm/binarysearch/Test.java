@@ -64,7 +64,7 @@ public class Test {
 
         // 退出循环时left > right，检查left是否越界
         // 同时检查left是否为target，因为target可能在两个数范围之间
-        if (left >= nums.length || nums[left] == target) {
+        if (left >= nums.length || nums[left] != target) {
             return -1;
         }
         return left;
@@ -92,7 +92,7 @@ public class Test {
 
         // 退出循环时left > right，检查right是否越界-1
         // 同时检查right是否为target，比如target<最小值，right为-1
-        if (right < 0 || nums[right] == target) {
+        if (right < 0 || nums[right] != target) {
             return -1;
         }
         return left;
