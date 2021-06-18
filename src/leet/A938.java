@@ -70,14 +70,14 @@ public class A938 {
             }
 
             if (root.val > high) {
-                return rangeSumBST_BFS(root.left, low, high);
+                return rangeSumBST_DFS(root.left, low, high);
             }
 
             if (root.val < low) {
-                return rangeSumBST_BFS(root.right, low, high);
+                return rangeSumBST_DFS(root.right, low, high);
             }
 
-            return root.val + rangeSumBST_BFS(root.left, low, high) + rangeSumBST_BFS(root.right, low, high);
+            return root.val + rangeSumBST_DFS(root.left, low, high) + rangeSumBST_DFS(root.right, low, high);
         }
     }
 }

@@ -8,7 +8,7 @@ import java.util.Arrays;
  **/
 public class QuickSort {
     public static void main(String[] args) {
-        int[] nums = new int[]{4, 6, 0, 3, 2, 5, 1, 6, 34, 32, 543, 23, 34};
+        int[] nums = new int[]{4, 3, 1, 0, 2, 9, 8, 6, 7, 5};
 
         quickSort(nums, 0, nums.length - 1);
 
@@ -25,10 +25,12 @@ public class QuickSort {
         int i = left, j = right;
         while (i < j) {
 
+            // 找到一个比key小的位置
             while (i < j && nums[j] >= key) {
                 j--;
             }
 
+            // 找到一个比key大的位置
             while (i < j && nums[i] <= key) {
                 i++;
             }

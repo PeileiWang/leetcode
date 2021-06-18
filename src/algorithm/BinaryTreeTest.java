@@ -7,7 +7,7 @@ import java.util.concurrent.CountDownLatch;
  * @author: wangpeilei
  * @date: 2021/05/27 00:20
  **/
-public class TreeTest {
+public class BinaryTreeTest {
 
     public static void main(String[] args) {
         TreeNode treeNode = new TreeNode(1);

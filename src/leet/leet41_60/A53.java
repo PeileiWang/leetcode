@@ -34,7 +34,7 @@ public class A53 {
             for (int num : nums) {
                 if (sum > 0) {
                     sum += num;
-                } else {
+                } else { // 如果算的和已经是小于等于0。那没必要再用sum。直接用当前的num
                     sum = num;
                 }
 
